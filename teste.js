@@ -3,21 +3,60 @@ const crypto = require("crypto")
 const QRcode = require("qrcode")
 
 
-function encrypt(){
+function insert(link){
+    fs.readFile(__dirname + "/database/questionsDatabase.json", "utf-8", (error, content) => {
+        if (error){
+            let datas = []
+            let newItem = {
+                id: 1,
+                link: link
+            }
+
+            datas.push(newItem)
+
+            fs.writeFile(__dirname+"/database/questionsDatabase.json", JSON.stringify(datas), error => {
+                console.log(error || "Arquivo Salvo!")
+            })
+        }else{
+            const datas = content ? JSON.parse(content) : []
+            console.log(datas)
+            for (let [i, data] of datas.entries()){
+                data.id = i+1
+            }
+
+            let newItem = {
+                id: datas.length + 1,
+                link: link
+            }
+
+            datas.push(newItem)
+            
+            fs.writeFile(__dirname+"/database/questionsDatabase.json", JSON.stringify(datas), error => {
+                console.log(error || "Arquivo Salvo!")
+            })
+        }
+    })
+}
+
+function encrypt(text){
     const algorithm = "aes-256-cbc"
     const key = crypto.randomBytes(32)
     const iv = crypto.randomBytes(16)
 
+    let cipher = crypto.createCipheriv(algorithm, key, iv)
+    
+    let encrypted = cipher.update(text)
+
     
     
-    let data = {
+    let permissions = {
         key: key.toString("hex"),
         iv: iv.toString("hex")
     }
 
-    let stringData = JSON.stringify(data)
+    let stringPermissions = JSON.stringify(permissions)
 
-    QRcode.toString(stringData, {type:"svg"}, function(err, url){
+    QRcode.toString(stringPermissions, {type:"svg"}, function(err, url){
         if(err){ 
             console.log("error ocurred")
         }else{
