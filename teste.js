@@ -14,7 +14,11 @@ function insert(link){
 
             datas.push(newItem)
 
-            fs.writeFile(__dirname+"/database/questionsDatabase.json", JSON.stringify(datas), error => {
+            let dataString = JSON.stringify(datas)
+
+            let encrypted = encrypt(dataString)
+
+            fs.writeFile(__dirname+"/database/questionsDatabase.json", encrypted, error => {
                 console.log(error || "Arquivo Salvo!")
             })
         }else{
@@ -23,19 +27,45 @@ function insert(link){
             for (let [i, data] of datas.entries()){
                 data.id = i+1
             }
-
+            console.log(datas)
             let newItem = {
                 id: datas.length + 1,
                 link: link
             }
 
             datas.push(newItem)
+
+            let dataString = JSON.stringify(datas)
             
-            fs.writeFile(__dirname+"/database/questionsDatabase.json", JSON.stringify(datas), error => {
+            let encrypted = encrypt(dataString)
+
+            fs.writeFile(__dirname+"/database/questionsDatabase.json", encrypted, error => {
                 console.log(error || "Arquivo Salvo!")
             })
         }
     })
+}
+
+function read(permissions){
+    fs.readFile(__dirname + "/database/questionsDatabase.json", "utf-8", function (error, content){
+        if (error){
+            console.log(error)
+        }else{
+            dataString = JSON.parse(decrypt(permissions, content))
+        }
+    })
+}
+
+function random(list){
+    return list[Math.floor(Math.random() * list.length)]
+}
+
+function raffleQuestion(){
+    let query = read('{"key":"d927fe901ea6d255520b8bd3a2008e86841ffa61b55cb4138858cb7ce7086611","iv":"d3489394ec7ed681b5c0c94fae8ccc5e"}')
+    console.log(query)
+    let question = random(query)
+
+    return question
 }
 
 function encrypt(text){
@@ -47,7 +77,7 @@ function encrypt(text){
     
     let encrypted = cipher.update(text)
 
-    
+    encrypted = Buffer.concat([encrypted, cipher.final()])
     
     let permissions = {
         key: key.toString("hex"),
@@ -70,16 +100,25 @@ function encrypt(text){
     //     if(err) return console.log("error ocurred")
     //     console.log(code)
     // })
+
+    return encrypted.toString("hex")
 }
 
-function decrypt(text){
+function decrypt(text, encryptedText){
     let datas = JSON.parse(text)
     
     let iv = Buffer.from(datas.iv, "hex")
     let key = Buffer.from(datas.key, "hex")
+    let encryptedTxt = Buffer.from(encryptedText, "hex")
 
     let decipher = crypto.createDecipheriv("aes-256-cbc", key, iv)
 
-    let decrypted = decipher.update()
+    let decrypted = decipher.update(encryptedTxt)
+    decrypted = Buffer.concat([decrypted, decipher.final()])
 
+    return decrypted.toString()
 }
+
+read('{"key":"d927fe901ea6d255520b8bd3a2008e86841ffa61b55cb4138858cb7ce7086611","iv":"d3489394ec7ed681b5c0c94fae8ccc5e"}')
+// let q = raffleQuestion()
+// console.log(q.link)
