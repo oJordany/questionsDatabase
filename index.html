@@ -9,34 +9,30 @@
 <body>
 </body>
 <script>
-    const myUrl = new URL(window.location.href+"?site=google")
-    console.log(myUrl)
-
-    if (myUrl.searchParams.get("site") == "google"){
-        let a = document.createElement("a")
-        a.href = "https://www.google.com"
-        a.setAttribute("rel", "noreferrer")
-        a.click()
-        // window.open("https://www.google.com", "_blank")
-    } else if (myUrl.searchParams.get("site") == "question"){
-        window.location.href = "question.html"
+    function fetchQuestion(type){
+        return fetch("database/questionsDatabase.json")
+            .then(response => response.text())
+            .then(response => JSON.parse(response))
+            .then(response => {
+                questionIndex = Math.floor(Math.random() * response[type].length)
+                console.log(questionIndex)
+                return response[type][questionIndex]
+            })
     }
 
-    // fetch("database/questionsDatabase.json")
-    //     .then(response => response.text())
-    //     .then(response => JSON.parse(response))
-    //     // .then(console.log)
-    //     .then(response => {
-    //         questionIndex = Math.floor(Math.random() * response.length)
-    //         console.log(questionIndex)
-    //         return response[questionIndex]
-    //     })
-    //     // .then(response => {
-    //     //     let container = document.getElementById("main")
-    //     //     container.insertAdjacentHTML("afterbegin", response)
-    //     // })
-    //     .then(response => {
-    //         window.location.href = response
-    //     })
+    const myUrl = new URL(window.location.href)
+    console.log(myUrl)
+
+    if (myUrl.searchParams.get("type") == "statistic"){
+        let question = fetchQuestion("statistic")
+        question.then(response => {
+            window.open(response, "_blank")
+        })
+    } else if (myUrl.searchParams.get("type") == "function"){
+        let question = fetchQuestion("statistic")
+        question.then(response => {
+            window.open(response, "_blank")
+        })
+    }
 </script>
 </html>

@@ -1,5 +1,12 @@
-[
+{    
+    "statistic":[
         "https://docs.google.com/forms/d/e/1FAIpQLScYZezVxHjYa5ijg0wDnEsCmvGagjT5-HclcJDqTz1V5r7BqA/viewform?usp=sf_link",
         "https://docs.google.com/forms/d/e/1FAIpQLSdqljXxqC1_BG4OCL5Ai8uK9nXBVS8D5UTntZlMLJx5-tgfDA/viewform?usp=sf_link",
-        "https://docs.google.com/forms/d/e/1FAIpQLSfWHf7Z1oRjusQ8xQqba7q2tT13WWOxhPK3gLKnA3DzdRP1wQ/viewform?usp=sf_link"
-]
+        "https://docs.google.com/forms/d/e/1FAIpQLSfWHf7Z1oRjusQ8xQqba7q2tT13WWOxhPK3gLKnA3DzdRP1wQ/viewform?usp=sf_link",
+        "https://docs.google.com/forms/d/e/1FAIpQLSfFTyVpO70fhO5WPEigoAcRnR8wub6vlD0PYt5xhF_vQEbheg/viewform?usp=sf_link"
+    ],
+    "function":[
+        "https://www.google.com",
+        "https://docs.google.com/forms/d/e/1FAIpQLSe3uzOp7e97207vTv6oRoyxrA8PxZ62MjSqv1onoopCQYFDKw/viewform?usp=sf_link"
+    ]
+}
