@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web SQL Database with HTNL and JavaScript</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <script src="script.js"></script>
+</head>
+
+<body class="grid text-center d-flex align-items-center" style="height: 100vh;">
+        <form class="container" action="question.html" style="width:33%;">
+            <img class="mb-4" src="css/key.svg" alt="" width="72" height="57">
+            <h1 class="h3 mb-3 fw-normal">Please, enter your access key</h1>
+
+            <div class="form-floating pb-3">
+                <input type="text" class="form-control" id="code" placeholder="Access key">
+                <label for="code">Access key</label>
+            </div>
+
+            <button class="btn btn-lg btn-primary" id="accessKey" type="submit" onclick="checkAccessKey(event)">Submit</button>
+            <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
+        </form>
+</body>
+<script>
+    fetch("database/questionsDatabase.json")
+    .then(response => response.text())
+    .then(console.log)
+</script>
+</html>

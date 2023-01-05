@@ -1,27 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web SQL Database with HTNL and JavaScript</title>
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <title>Question</title>
 </head>
-
-<body class="grid text-center d-flex align-items-center" style="height: 100vh;">
-        <form class="container " style="width:33%;">
-            <img class="mb-4" src="css/key.svg" alt="" width="72" height="57">
-            <h1 class="h3 mb-3 fw-normal">Please, enter your access key</h1>
-
-            <div class="form-floating pb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Access key</label>
-            </div>
-
-            <button class="btn btn-lg btn-primary" type="submit">Submit</button>
-            <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
-        </form>
-
+<body>
 </body>
+<script>
+    const myUrl = new URL(window.location.href)
 
+    if (myUrl.searchParams.get("site") == "google"){
+        window.location.href = "google.html"
+    } else if (myUrl.searchParams.get("site") == "question"){
+        window.location.href = "question.html"
+    }
+
+    // fetch("database/questionsDatabase.json")
+    //     .then(response => response.text())
+    //     .then(response => JSON.parse(response))
+    //     // .then(console.log)
+    //     .then(response => {
+    //         questionIndex = Math.floor(Math.random() * response.length)
+    //         console.log(questionIndex)
+    //         return response[questionIndex]
+    //     })
+    //     // .then(response => {
+    //     //     let container = document.getElementById("main")
+    //     //     container.insertAdjacentHTML("afterbegin", response)
+    //     // })
+    //     .then(response => {
+    //         window.location.href = response
+    //     })
+</script>
 </html>
