@@ -26,7 +26,7 @@
     if (myUrl.searchParams.get("type") == "statistic"){
         let question = fetchQuestion("statistic")
         question.then(response => {
-            window.open(response, "_blank")
+            window.open(response, "_blank", "rel=noreferrer")
         }).then(window.close())
     } else if (myUrl.searchParams.get("type") == "function"){
         let question = fetchQuestion("function")
