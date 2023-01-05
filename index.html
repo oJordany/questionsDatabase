@@ -28,13 +28,12 @@
         question.then(response => {
             window.open(response, "_blank")
         })
-        window.close()
     } else if (myUrl.searchParams.get("type") == "function"){
         let question = fetchQuestion("function")
         question.then(response => {
             window.open(response, "_blank")
         })
-        window.close()
     }
+    window.close()
 </script>
 </html>
