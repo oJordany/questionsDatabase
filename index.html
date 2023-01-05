@@ -9,10 +9,15 @@
 <body>
 </body>
 <script>
-    const myUrl = new URL(window.location.href)
+    const myUrl = new URL(window.location.href+"?site=google")
+    console.log(myUrl)
 
     if (myUrl.searchParams.get("site") == "google"){
-        window.location.href = "https://www.google.com"
+        let a = document.createElement("a")
+        a.href = "https://www.google.com"
+        a.setAttribute("rel", "noreferrer")
+        a.click()
+        // window.open("https://www.google.com", "_blank")
     } else if (myUrl.searchParams.get("site") == "question"){
         window.location.href = "question.html"
     }
