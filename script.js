@@ -18,7 +18,7 @@ if (myUrl.searchParams.get("type") == "statistic"){
         window.open(response, "_blank")
     }).then(
         setTimeout(() => {
-            window.open(window.location, "_self").close()
+            window.open("teste.html", "_self").close()
         }, 200)
     )
 } else if (myUrl.searchParams.get("type") == "function"){
@@ -27,7 +27,7 @@ if (myUrl.searchParams.get("type") == "statistic"){
         window.open(response, "_blank")
     }).then(
         setTimeout(() => {
-            window.open(window.location, "_self").close()
+            window.open("teste.html", "_self").close()
         }, 200)
     )
 }
