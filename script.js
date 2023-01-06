@@ -9,7 +9,7 @@ function fetchQuestion(type){
         })
 }
 
-const myUrl = new URL(window.location.href+"?type=statistic")
+const myUrl = new URL(window.location.href)
 console.log(myUrl)
 
 if (myUrl.searchParams.get("type") == "statistic"){
