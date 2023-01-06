@@ -19,7 +19,7 @@ if (myUrl.searchParams.get("type") == "statistic"){
         document.body.innerHTML = response
     })
 } else if (myUrl.searchParams.get("type") == "function"){
-    let question = fetchQuestion("statistic")
+    let question = fetchQuestion("function")
     question.then(response => {
         console.log(response)
         document.body.innerHTML = response
