@@ -9,18 +9,25 @@ function fetchQuestion(type){
         })
 }
 
-const myUrl = new URL(window.location.href)
+const myUrl = new URL(window.location.href+"?type=statistic")
 console.log(myUrl)
 
 if (myUrl.searchParams.get("type") == "statistic"){
     let question = fetchQuestion("statistic")
     question.then(response => {
-        window.open(response, "_self", "rel=noreferrer")
-    }).then(window.close())
+        window.open(response, "_blank")
+    }).then(
+        setTimeout(() => {
+            window.close()
+        }, 1000)
+    )
 } else if (myUrl.searchParams.get("type") == "function"){
     let question = fetchQuestion("function")
     question.then(response => {
-        window.open(response, "_self")
-    }).then(window.close())
+        window.open(response, "_blank")
+    }).then(
+        setTimeout(() => {
+            window.close()
+        }, 1000)
+    )
 }
-console.log($TESTE)
