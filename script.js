@@ -15,19 +15,13 @@ console.log(myUrl)
 if (myUrl.searchParams.get("type") == "statistic"){
     let question = fetchQuestion("statistic")
     question.then(response => {
-        window.open(response, "_blank")
-    }).then(
-        setTimeout(() => {
-            window.open("teste.html", "_self").close()
-        }, 200)
-    )
+        console.log(response)
+        document.body.innerHTML = response
+    })
 } else if (myUrl.searchParams.get("type") == "function"){
-    let question = fetchQuestion("function")
+    let question = fetchQuestion("statistic")
     question.then(response => {
-        window.open(response, "_blank")
-    }).then(
-        setTimeout(() => {
-            window.open("teste.html", "_self").close()
-        }, 200)
-    )
+        console.log(response)
+        document.body.innerHTML = response
+    })
 }
